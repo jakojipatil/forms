@@ -24,12 +24,17 @@
         </div>
       </div>
       <div id="pc-tabs" class="pc-tabs d-none">
-        <div id="tab-current" class="pc-tab active">
-          Current Preference
+        <div class="pc-tab-group">
+          <div id="tab-current" class="pc-tab active">
+            Current Preference
+          </div>
+          <div id="tab-history" class="pc-tab">
+            Preference History
+          </div>
         </div>
-        <div id="tab-history" class="pc-tab">
-          Preference History
-        </div>
+      <div id="downloadHistoryBtn" class="download-history-link hidden">
+      <i class="ri-download-2-line"></i> Download Current Preference
+      </div>
       </div>
 
       <div class="header-container">
@@ -70,11 +75,14 @@
 
 <script>
   window.consentWidgetConfig = {
-    preferenceFormId: "",
-    preferenceDetailsApiUrl:"https://perf.pre-dataprivacy.com/cpm-api/open-api/v1/preference/v1/export/getPreferenceDetails",
-    preferenceHistoryApiUrl:"https://perf.pre-dataprivacy.com/cpm-api/open-api/v1/preference/v1/export/auditSearch/scroll",
-    submitApiUrl:"https://perf.pre-dataprivacy.com/cpm-api/open-api/v1/preference/v1/createOrUpdateConsent",
-    signatureServiceUrl: "https://perf.pre-dataprivacy.com/cpm-sign",
+    preferenceFormId: "12fed6a3-5a3b-407c-8a78-8b15197dbee7",
+    preferenceFormName: "Campaign Preference  ",
+    apiDomain: "https://l8skee.pre-dataprivacy.com",
+    preferenceDetailsApiUrl:"https://l8skee.pre-dataprivacy.com/cpm-api/open-api/v1/preference/v1/export/getPreferenceDetails",
+    preferenceHistoryApiUrl:"https://l8skee.pre-dataprivacy.com/cpm-api/open-api/v1/preference/v1/export/auditSearch/scroll",
+    downloadHistoryPdfApiUrl:"https://l8skee.pre-dataprivacy.com/cpm-api/open-api/v1/preference/v1/export/downloadPreferenceHistoryPdf",
+    submitApiUrl:"https://l8skee.pre-dataprivacy.com/cpm-api/open-api/v1/preference/v1/createOrUpdateConsent",
+    signatureServiceUrl: "https://l8skee.pre-dataprivacy.com/cpm-sign",
     userToken: "Bearer bearer",
     customAttributes: {},
     showButtons: true,
@@ -85,7 +93,8 @@
     footerAlignment: "left",
     receivedType:"WEB",
     customHeaders: {
-      
+        "test-header-1": "test-1",
+        "test-header-2": "test-2"
     }
   };
 
@@ -103,10 +112,9 @@
         // SRI (Subresource Integrity) ensures script hasn't been tampered with
         // crossOrigin required for SRI validation
         script.crossOrigin = 'anonymous';
-        script.integrity = "sha384-oNm+LwGMLcT2c/RuclPBfrv1eVn0bxzSjQZU1h4imnP911oSYLeC4D8VRHLfMk/M";
+        script.integrity = "sha384-yqFLyD7c2/Ugtgc4Mmwk4EL9ug08Rb8t6SD6JB51GniLJu//++weJ3EPIm4YSVss";
         script.onload = function() {
           window.scriptLoaded = true;
-          console.log("script.js loaded");
         };
         document.body.appendChild(script);
       }
@@ -143,8 +151,6 @@
 
     const result = await window.consentWidget.submit();
 
-    console.log("Submit result:", result);
-
     if (result.success) {
       // navigate next page here
       // window.location.href = "/next-page";
@@ -160,7 +166,7 @@
 
 </script>
 <!--comment below line in case of Android integration -->
-<script src="./script.js" integrity="sha384-oNm+LwGMLcT2c/RuclPBfrv1eVn0bxzSjQZU1h4imnP911oSYLeC4D8VRHLfMk/M" crossorigin="anonymous"></script>
+<script src="./script.js" integrity="sha384-yqFLyD7c2/Ugtgc4Mmwk4EL9ug08Rb8t6SD6JB51GniLJu//++weJ3EPIm4YSVss" crossorigin="anonymous"></script>
   </body>
 </html>
    

@@ -34,13 +34,17 @@
   <script>
     // Configuration options for the consent widget
     window.consentWidgetConfig = {
-      consentFormId: "",
-      apiUrl: "https://perf.pre-dataprivacy.com/cpm-api/open-api/v1/consent/v1/getConsentFormById",
-      submitApiUrl: "https://perf.pre-dataprivacy.com/cpm-api/open-api/v1/consent/v1/createOrUpdateConsent",
+      consentFormId: "ce2b6b28-ab8d-4dc0-ac6e-9a78742a10c0",
+      apiDomain: "https://l8skee.pre-dataprivacy.com",
+      apiUrl: "https://l8skee.pre-dataprivacy.com/cpm-api/open-api/v1/consent/v1/getConsentFormById",
+      submitApiUrl: "https://l8skee.pre-dataprivacy.com/cpm-api/open-api/v1/consent/v1/createOrUpdateConsent",
       tenantToken: "Bearer bearer",
-      signatureServiceUrl: "https://perf.pre-dataprivacy.com/cpm-sign",
+      signatureServiceUrl: "https://l8skee.pre-dataprivacy.com/cpm-sign",
       dataPrincipalId: [
-     
+        {
+          key: "email",
+          value: "email"
+        }
       ],
       customAttributes: {},
       showButtons: true,
@@ -50,7 +54,8 @@
       enableDropdowns: true,
       receivedType:"WEB",
       customHeaders: {
-       
+        "test-header-1": "test-1",
+        "test-header-2": "test-2"
       }
     };
 
@@ -72,10 +77,9 @@
         // SRI (Subresource Integrity) ensures script hasn't been tampered with
         // crossOrigin required for SRI validation
         script.crossOrigin = 'anonymous';
-        script.integrity = "sha384-y5s8nwocYzQzIVByBuPGvznrJgIo6P/dLT3oxvQjJQ6dHSuXm9bMHoEq8vpicoF5";
+        script.integrity = "sha384-+D19eOxe7ix4v061w3No5XYWlKH1wPy9/Bloc//dVxhdXSc+sQPeFGlMjdVQzQ9c";
         script.onload = function() {
           window.scriptLoaded = true;
-          console.log("script.js loaded");
         };
         document.body.appendChild(script);
       }
@@ -111,8 +115,6 @@
 
     const result = await window.consentWidget.submit();
 
-    console.log("Submit result:", result);
-
     if (result.success) {
       // navigate next page here
       // window.location.href = "/next-page";
@@ -127,6 +129,6 @@
 </script>
 -->
 <!--comment below line in case of Android integration -->
-<script src="./script.js" integrity="sha384-y5s8nwocYzQzIVByBuPGvznrJgIo6P/dLT3oxvQjJQ6dHSuXm9bMHoEq8vpicoF5" crossorigin="anonymous"></script>
+<script src="./script.js" integrity="sha384-+D19eOxe7ix4v061w3No5XYWlKH1wPy9/Bloc//dVxhdXSc+sQPeFGlMjdVQzQ9c" crossorigin="anonymous"></script>
 </body>
 </html>
